@@ -15,11 +15,11 @@ let
   info = lib.splitString "-" stdenv.hostPlatform.system;
   arch = elemAt info 0;
   plat = elemAt info 1;
-  shas =
+  hashes =
     {
-      x86_64-linux  = "b657d82c8189acc8a8f656ab949e1484aaa98755a16c33f48c318fb17180343f";
-      x86_64-darwin = "ac2b5a639ad83431db25e4161f811111d45db052eb845091e18f847016a34a55";
-      aarch64-linux = "a1f7ab9e874799bf380b94394e5bb1ce28f38019896293dde8797d74ad273e67";
+      x86_64-linux  = "sha256-GSb9VT4v8bielhO6XSuWqw/khaqwEgphMFG8ihzeeWQ=";
+      x86_64-darwin = "sha256-DeadBeeFDeadBeeFCoFeeC0feeDeadBeefC0feeAAA5=";
+      aarch64-linux = "sha256-9cilL4NOYup6nMgOalW6rQsekz8/Eaph6x0XGEkouOs=";
     };
 
 in stdenv.mkDerivation rec {
@@ -28,7 +28,7 @@ in stdenv.mkDerivation rec {
 
   src = fetchurl {
     url = "https://artifacts.elastic.co/downloads/kibana/${pname}-${version}-${plat}-${arch}.tar.gz";
-    sha256 = shas.${stdenv.hostPlatform.system} or (throw "Unknown architecture");
+    hash = hashes.${stdenv.hostPlatform.system} or (throw "Unknown architecture");
   };
 
   patches = [

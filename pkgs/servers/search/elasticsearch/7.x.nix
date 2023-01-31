@@ -16,12 +16,12 @@ let
   info = splitString "-" stdenv.hostPlatform.system;
   arch = elemAt info 0;
   plat = elemAt info 1;
-  shas =
+  hashes =
     {
-      x86_64-linux   = "7281b79f2bf7421c2d71ab4eecdfd517b86b6788d1651dad315198c564284ea9";
-      x86_64-darwin  = "6d2343171a0d384910312220aae3512f45e3d3d900557b736c139b8363a008e4";
-      aarch64-linux  = "3153820d53a454513b534765fef68ce1f61a2dd92d4dae7428a1220bb3ce8fe5";
-      aarch64-darwin = "e62af7486c1041d3f1648646671d5c665e1abffd696cd2a5d96c2a5aaabe38f8";
+      x86_64-linux   = "sha256-HEC6TgkS2hQyy4XA0kb2jhSn2iSf7qkXUsjq6yit8Kw=";
+      x86_64-darwin  = "sha256-DeadBeeFDeadBeeFCoFeeC0feeDeadBeefC0feeAAA1=";
+      aarch64-linux  = "sha256-R9ZTKhbgK5Igig1xKJpvsCFULJJe2GjkkjcDK8OrXGo=";
+      aarch64-darwin = "sha256-DeadBeeFDeadBeeFCoFeeC0feeDeadBeefC0feeAAA3=";
     };
 in
 stdenv.mkDerivation rec {
@@ -30,7 +30,7 @@ stdenv.mkDerivation rec {
 
   src = fetchurl {
     url = "https://artifacts.elastic.co/downloads/elasticsearch/${pname}-${version}-${plat}-${arch}.tar.gz";
-    sha256 = shas.${stdenv.hostPlatform.system} or (throw "Unknown architecture");
+    hash = hashes.${stdenv.hostPlatform.system} or (throw "Unknown architecture");
   };
 
   patches = [ ./es-home-6.x.patch ];

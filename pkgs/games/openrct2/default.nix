@@ -45,6 +45,7 @@ let
   };
 
   objects-src = fetchFromGitHub {
+    name = "objects";
     owner = "OpenRCT2";
     repo = "objects";
     rev = "v${objects-version}";
@@ -52,6 +53,7 @@ let
   };
 
   openmsx-src = fetchFromGitHub {
+    name = "openmsx";
     owner = "OpenRCT2";
     repo = "OpenMusic";
     rev = "v${openmsx-version}";
@@ -59,6 +61,7 @@ let
   };
 
   opensfx-src = fetchFromGitHub {
+    name = "opensfx";
     owner = "OpenRCT2";
     repo = "OpenSoundEffects";
     rev = "v${opensfx-version}";
@@ -66,6 +69,7 @@ let
   };
 
   title-sequences-src = fetchFromGitHub {
+    name = "title-sequences";
     owner = "OpenRCT2";
     repo = "title-sequences";
     rev = "v${title-sequences-version}";
@@ -76,7 +80,15 @@ stdenv.mkDerivation {
   pname = "openrct2";
   version = openrct2-version;
 
-  src = openrct2-src;
+  srcs = [
+    openrct2-src
+    objects-src
+    openmsx-src
+    opensfx-src
+    title-sequences-src
+  ];
+  sourceRoot = openrct2-src.name;
+
 
   nativeBuildInputs = [
     cmake
@@ -122,10 +134,10 @@ stdenv.mkDerivation {
   postUnpack = ''
     mkdir -p $sourceRoot/data/assetpack
 
-    cp -r ${objects-src}         $sourceRoot/data/object
-    cp -r ${openmsx-src}         $sourceRoot/data/assetpack/openrct2.music.alternative.parkap
-    cp -r ${opensfx-src}         $sourceRoot/data/assetpack/openrct2.sound.parkap
-    cp -r ${title-sequences-src} $sourceRoot/data/sequence
+    cp -r ${objects-src.name}         $sourceRoot/data/object
+    cp -r ${openmsx-src.name}         $sourceRoot/data/assetpack/openrct2.music.alternative.parkap
+    cp -r ${opensfx-src.name}         $sourceRoot/data/assetpack/openrct2.sound.parkap
+    cp -r ${title-sequences-src.name} $sourceRoot/data/sequence
   '';
 
   preConfigure =

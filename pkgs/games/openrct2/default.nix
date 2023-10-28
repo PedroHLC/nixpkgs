@@ -41,35 +41,35 @@ let
     owner = "OpenRCT2";
     repo = "OpenRCT2";
     rev = "v${openrct2-version}";
-    sha256 = "sha256-HQrYdCSYqIRhqeaJwyWwPQ9mWDiudTGK6IWxRmcuf44=";
+    hash = "sha256-HQrYdCSYqIRhqeaJwyWwPQ9mWDiudTGK6IWxRmcuf44=";
   };
 
   objects-src = fetchFromGitHub {
     owner = "OpenRCT2";
     repo = "objects";
     rev = "v${objects-version}";
-    sha256 = "sha256-fA2Kz4GALu6IP7ulbwpAFt3dz6NCPgyB0CWy5uOLBQY=";
+    hash = "sha256-fA2Kz4GALu6IP7ulbwpAFt3dz6NCPgyB0CWy5uOLBQY=";
   };
 
   openmsx-src = fetchFromGitHub {
     owner = "OpenRCT2";
     repo = "OpenMusic";
     rev = "v${openmsx-version}";
-    sha256 = "sha256-bsm95Z/Xsesqs7SQjG4JyMUJauy/ooGBSoO5J+A8KOg=";
+    hash = "sha256-bsm95Z/Xsesqs7SQjG4JyMUJauy/ooGBSoO5J+A8KOg=";
   };
 
   opensfx-src = fetchFromGitHub {
     owner = "OpenRCT2";
     repo = "OpenSoundEffects";
     rev = "v${opensfx-version}";
-    sha256 = "sha256-xYz1Nx30r3m05jiDO8Lvv1BHoyJ6GtuEJV2Fbc0UUSM=";
+    hash = "sha256-xYz1Nx30r3m05jiDO8Lvv1BHoyJ6GtuEJV2Fbc0UUSM=";
   };
 
   title-sequences-src = fetchFromGitHub {
     owner = "OpenRCT2";
     repo = "title-sequences";
     rev = "v${title-sequences-version}";
-    sha256 = "sha256-HWp2ecClNM/7O3oaydVipOnEsYNP/bZnZFS+SDidPi0=";
+    hash = "sha256-HWp2ecClNM/7O3oaydVipOnEsYNP/bZnZFS+SDidPi0=";
   };
 in
 stdenv.mkDerivation {

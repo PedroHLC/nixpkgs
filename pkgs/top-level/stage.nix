@@ -71,6 +71,27 @@ in
 } @args:
 
 let
+  # X86-64 Microarchitecture levels
+  # https://en.wikipedia.org/wiki/X86-64#Microarchitecture_levels
+  # Should work indifferent of system (Linux, Darwin, etc)
+  makeMicroarch = lvl:
+    if stdenv.hostPlatform.isx86 then
+      nixpkgsFun {
+        overlays = [ (self': super': {
+          "pkgsx86_64_${lvl}" = super';
+        })] ++ overlays;
+        ${if stdenv.hostPlatform == stdenv.buildPlatform
+          then "localSystem" else "crossSystem"} = {
+          parsed = stdenv.hostPlatform.parsed // {
+            cpu = lib.systems.parse.cpuTypes.x86_64;
+          };
+          gcc = stdenv.hostPlatform.gcc // {
+            arch = "x86-64-${lvl}";
+          };
+        };
+      } // {recurseForDerivations = false; }
+    else throw "x86_64_${lvl} package set can only be used with the x86 family.";
+
   # This is a function from parsed platforms (like
   # stdenv.hostPlatform.parsed) to parsed platforms.
   makeMuslParsedPlatform = parsed:
@@ -230,6 +251,11 @@ let
         };
       };
     } else throw "i686 Linux package set can only be used with the x86 family.";
+
+    # All packages built for x86-64-vN.
+    pkgsx86_64_v2 = makeMicroarch "v2";
+    pkgsx86_64_v3 = makeMicroarch "v3";
+    pkgsx86_64_v4 = makeMicroarch "v4";
 
     # x86_64-darwin packages for aarch64-darwin users to use with Rosetta for incompatible packages
     pkgsx86_64Darwin = if stdenv.hostPlatform.isDarwin then nixpkgsFun {

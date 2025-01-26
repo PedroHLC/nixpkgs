@@ -41,7 +41,7 @@ stdenv.mkDerivation {
       --replace "/lib/modules" "${kernel.dev}/lib/modules"
   '';
 
-  makeFlags = kernel.moduleMakeFlags;
+  makeFlags = kernel.makeFlags;
 
   installPhase = ''
     mkdir -p $out/lib/modules/${kernel.modDirVersion}/misc

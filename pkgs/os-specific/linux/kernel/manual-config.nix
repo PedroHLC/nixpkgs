@@ -421,9 +421,18 @@ let
         timeout = 14400; # 4 hours
       } // extraMeta;
     };
+in
+
+stdenv.mkDerivation ((drvAttrs config stdenv.hostPlatform.linux-kernel kernelPatches configfile) // {
+  inherit pname version;
+
+  enableParallelBuilding = true;
+
+  hardeningDisable = [ "bindnow" "format" "fortify" "stackprotector" "pic" "pie" ];
 
   # Absolute paths for compilers avoid any PATH-clobbering issues.
-  commonMakeFlags = [
+  makeFlags = [
+    "O=$(buildRoot)"
     "ARCH=${stdenv.hostPlatform.linuxArch}"
     "CROSS_COMPILE=${stdenv.cc.targetPrefix}"
   ] ++ lib.optionals (stdenv.isx86_64 && stdenv.cc.bintools.isLLVM) [
@@ -435,27 +444,5 @@ let
   ] ++ (stdenv.hostPlatform.linux-kernel.makeFlags or [])
     ++ extraMakeFlags;
 
-  finalKernel = stdenv.mkDerivation (
-    builtins.foldl' lib.recursiveUpdate {} [
-      (drvAttrs config stdenv.hostPlatform.linux-kernel kernelPatches configfile)
-      {
-        inherit pname version;
-
-        enableParallelBuilding = true;
-
-        hardeningDisable = [ "bindnow" "format" "fortify" "stackprotector" "pic" "pie" ];
-
-        makeFlags = [
-          "O=$(buildRoot)"
-        ] ++ commonMakeFlags;
-
-        passthru.moduleMakeFlags = [
-          "KBUILD_OUTPUT=${finalKernel.dev}/lib/modules/${finalKernel.modDirVersion}/build"
-        ] ++ commonMakeFlags;
-
-        karch = stdenv.hostPlatform.linuxArch;
-      }
-      (optionalAttrs (pos != null) { inherit pos; })
-    ]
-  );
-in finalKernel)
+  karch = stdenv.hostPlatform.linuxArch;
+} // (optionalAttrs (pos != null) { inherit pos; })))

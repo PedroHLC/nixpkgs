@@ -17,7 +17,7 @@ stdenv.mkDerivation {
     cd tools/thermal/tmon
   '';
 
-  makeFlags = kernel.moduleMakeFlags ++ [
+  makeFlags = kernel.makeFlags ++ [
     "INSTALL_ROOT=\"$(out)\""
     "BINDIR=bin"
   ];

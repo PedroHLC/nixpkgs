@@ -39,7 +39,7 @@ stdenv.mkDerivation rec {
       --replace depmod \#
   '';
 
-  makeFlags = kernel.moduleMakeFlags ++ [
+  makeFlags = kernel.makeFlags ++ [
     "KDIR=${kernel.dev}/lib/modules/${kernel.modDirVersion}/build"
     "KVER=${kernel.modDirVersion}"
     "KERNEL_MODLIB=$(out)/lib/modules/${kernel.modDirVersion}"

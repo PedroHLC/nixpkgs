@@ -16,7 +16,7 @@ stdenv.mkDerivation rec {
 
   hardeningDisable = [ "pic" ];
 
-  makeFlags = kernel.moduleMakeFlags ++ [
+  makeFlags = kernel.makeFlags ++ [
     "INSTALL_MOD_PATH=${placeholder "out"}"
   ];
   KSRC = "${kernel.dev}/lib/modules/${kernel.modDirVersion}/build";

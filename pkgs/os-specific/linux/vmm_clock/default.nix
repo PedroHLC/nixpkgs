@@ -26,7 +26,7 @@ stdenv.mkDerivation rec {
     CONFIG_RTC_HCTOSYS yes
   '';
 
-  makeFlags = kernel.moduleMakeFlags ++ [
+  makeFlags = kernel.makeFlags ++ [
     "DEPMOD=echo"
     "INSTALL_MOD_PATH=$(out)"
     "KERNELRELEASE=${kernel.modDirVersion}"

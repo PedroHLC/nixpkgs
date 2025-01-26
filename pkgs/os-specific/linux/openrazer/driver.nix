@@ -20,7 +20,7 @@ stdenv.mkDerivation (
 
     nativeBuildInputs = kernel.moduleBuildDependencies;
 
-    makeFlags = kernel.moduleMakeFlags ++ [
+    makeFlags = kernel.makeFlags ++ [
       "KERNELDIR=${kernel.dev}/lib/modules/${kernel.modDirVersion}/build"
     ];
 

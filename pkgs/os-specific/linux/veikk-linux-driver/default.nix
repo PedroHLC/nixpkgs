@@ -20,7 +20,7 @@ stdenv.mkDerivation rec {
 
   buildInputs = [ kernel ];
 
-  makeFlags = kernel.moduleMakeFlags ++ [
+  makeFlags = kernel.makeFlags ++ [
     "BUILD_DIR=${kernel.dev}/lib/modules/${kernel.modDirVersion}/build"
   ];
 

@@ -31,7 +31,7 @@ stdenv.mkDerivation rec {
     cd src
   '';
 
-  makeFlags = kernel.moduleMakeFlags ++ [
+  makeFlags = kernel.makeFlags ++ [
     "-C"
     "${kernel.dev}/lib/modules/${kernel.modDirVersion}/build"
     "M=$(PWD)"

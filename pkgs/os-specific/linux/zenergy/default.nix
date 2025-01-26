@@ -27,7 +27,7 @@ stdenv.mkDerivation {
     "pic"
   ];
 
-  makeFlags = kernel.moduleMakeFlags ++ [ "KDIR=${kernelDirectory}" ];
+  makeFlags = kernel.makeFlags ++ [ "KDIR=${kernelDirectory}" ];
 
   installTargets = [ "modules_install" ];
 

@@ -18,7 +18,7 @@ stdenv.mkDerivation {
     sed -i -e '/depmod/d' ./Makefile
   '';
 
-  makeFlags = kernel.moduleMakeFlags ++ [
+  makeFlags = kernel.makeFlags ++ [
     "SHELL=bash"
     "KERNELVERSION=${kernel.modDirVersion}"
     "KSRC=${kernel.dev}/lib/modules/${kernel.modDirVersion}/build"

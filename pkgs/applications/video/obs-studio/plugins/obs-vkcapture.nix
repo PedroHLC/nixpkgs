@@ -84,9 +84,7 @@ stdenv.mkDerivation (finalAttrs: {
     description = "OBS Linux Vulkan/OpenGL game capture";
     homepage = "https://github.com/nowrep/obs-vkcapture";
     changelog = "https://github.com/nowrep/obs-vkcapture/releases/tag/v${finalAttrs.version}";
-    maintainers = with lib.maintainers; [
-      pedrohlc
-    ];
+    maintainers = with lib.maintainers; [ ];
     license = lib.licenses.gpl2Only;
     platforms = lib.platforms.linux;
   };

@@ -90,7 +90,7 @@ stdenv.mkDerivation (finalAttrs: {
     description = "Standalone lyrics fetcher/displayer";
     homepage = "https://github.com/osdlyrics/osdlyrics";
     license = lib.licenses.gpl3Plus;
-    maintainers = with lib.maintainers; [ pedrohlc ];
+    maintainers = with lib.maintainers; [ ];
     platforms = lib.platforms.linux;
   };
 })

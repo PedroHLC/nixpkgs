@@ -90,7 +90,7 @@ stdenv.mkDerivation (finalAttrs: {
     mainProgram = "ei-debug-events";
     homepage = "https://gitlab.freedesktop.org/libinput/libei";
     license = lib.licenses.mit;
-    maintainers = [ lib.maintainers.pedrohlc ];
+    maintainers = [ ];
     platforms = lib.platforms.linux ++ lib.platforms.freebsd;
   };
 })

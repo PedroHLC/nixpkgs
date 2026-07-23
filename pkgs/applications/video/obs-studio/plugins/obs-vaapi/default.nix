@@ -61,7 +61,6 @@ stdenv.mkDerivation rec {
     changelog = "https://github.com/fzwoch/obs-vaapi/releases/tag/${version}";
     maintainers = with lib.maintainers; [
       ahuzik
-      pedrohlc
     ];
     license = lib.licenses.gpl2Plus;
     inherit (obs-studio.meta) platforms;

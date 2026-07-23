@@ -89,7 +89,6 @@ stdenv.mkDerivation (finalAttrs: {
     platforms = lib.platforms.unix;
     license = lib.licenses.lgpl3Only;
     maintainers = with lib.maintainers; [
-      pedrohlc
       niklaskorz
     ];
     changelog = "https://github.com/SaschaWillems/VulkanCapsViewer/releases/tag/${finalAttrs.version}";

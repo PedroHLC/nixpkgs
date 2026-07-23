@@ -107,7 +107,6 @@ stdenv.mkDerivation (finalAttrs: {
     mainProgram = "swaync";
     maintainers = with lib.maintainers; [
       berbiche
-      pedrohlc
     ];
   };
 })

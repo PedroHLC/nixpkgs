@@ -21887,12 +21887,6 @@
     github = "peat-psuwit";
     githubId = 6771175;
   };
-  pedrohlc = {
-    email = "root@pedrohlc.com";
-    github = "PedroHLC";
-    githubId = 1368952;
-    name = "Pedro Lara Campos";
-  };
   peelz = {
     email = "peelz.dev+nixpkgs@gmail.com";
     github = "notpeelz";

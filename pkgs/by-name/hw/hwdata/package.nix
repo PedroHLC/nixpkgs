@@ -23,7 +23,6 @@ stdenv.mkDerivation (finalAttrs: {
     license = lib.licenses.gpl2Plus;
     maintainers = with lib.maintainers; [
       johnrtitor
-      pedrohlc
     ];
     platforms = lib.platforms.all;
   };
